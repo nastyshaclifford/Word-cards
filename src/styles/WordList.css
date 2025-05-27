@@ -1,0 +1,64 @@
+@import './variables.css';
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: var(--font-main);
+}
+
+.word-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.word-table th,
+.word-table td {
+    border: 1px solid var(--color-border);
+    padding: 10px;
+    font-size: var(--font-size);
+    text-align: left;
+}
+
+.word-table th {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn {
+    padding: 6px 10px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    color: white;
+    transition: var(--transition);
+    margin-right: 6px;
+}
+
+.edit {
+    background-color: var(--color-primary);
+}
+
+.delete {
+    background-color: var(--color-danger);
+}
+
+.save {
+    background-color: var(--color-primary);
+}
+
+.cancel {
+    background-color: var(--color-danger);
+}
+
+.btn:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+
+
