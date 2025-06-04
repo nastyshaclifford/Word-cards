@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import '../styles/WordList.css';
 
 const firstWords = [
@@ -252,113 +252,121 @@ const firstWords = [
     }
 ];
 
+const WordList = () => {
+    const [words, setWords] = useState(firstWords);
+    const [editingId, setEditingId] = useState(null);
+    const [editedWord, setEditedWord] = useState({});
 
-class WordList extends Component {
-    constructor(props) {
-    super(props);
-    this.state = {
-        words: firstWords,
-        editingId: null,
-        editedWord: {}
-    };
-    }
-
-    handleEdit = (word) => {
-    this.setState({
-        editingId: word.id,
-        editedWord: { ...word }
-    });
+    const handleEdit = (word) => {
+        setEditingId(word.id);
+        setEditedWord({ ...word });
     };
 
-    handleCancel = () => {
-    this.setState({
-        editingId: null,
-        editedWord: {}
-    });
+    const handleCancel = () => {
+        setEditingId(null);
+        setEditedWord({});
     };
 
-    handleSave = (id) => {
-    this.setState((prevState) => ({
-        words: prevState.words.map(word =>
-        word.id === id ? prevState.editedWord : word
-        ),
-        editingId: null,
-        editedWord: {}
-    }));
+    const handleSave = (id) => {
+        setWords(words.map(word => 
+            word.id === id ? editedWord : word
+        ));
+        setEditingId(null);
+        setEditedWord({});
     };
 
-    handleDelete = (id) => {
-        this.setState(prevState => ({
-        words: prevState.words.filter(word => word.id !== id)
+    const handleDelete = (id) => {
+        setWords(words.filter(word => word.id !== id));
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setEditedWord(prev => ({
+            ...prev,
+            [name]: value
         }));
     };
 
-
-    handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState(prevState => ({
-        editedWord: { ...prevState.editedWord, [name]: value }
-    }));
-    };
-
-    render() {
-    const { words, editingId, editedWord } = this.state;
     return (
         <div className="container">
-        <table className="word-table">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Основное значение</th>
-                <th>Транскрипция</th>
-                <th>Перевод</th>
-                <th>Тема</th>
-                <th colSpan="2"></th>
-            </tr>
-        </thead>
-        <tbody>
-            {words.map((word, index) => (
-            <tr key={word.id}>
-            <td>{index + 1}</td>
-            {editingId === word.id ? (
-            <>
-                <td>
-                <input name="english" value={editedWord.english} onChange={this.handleChange} />
-                </td>
-                <td>
-                <input name="transcription" value={editedWord.transcription} onChange={this.handleChange} />
-                </td>
-                <td>
-                <input name="russian" value={editedWord.russian} onChange={this.handleChange} />
-                </td>
-                <td>
-                <input name="tags" value={editedWord.tags} onChange={this.handleChange} />
-                </td>
-                <td>
-                <button className="btn save" onClick={() => this.handleSave(word.id)}>Сохранить</button>
-                <button className="btn cancel" onClick={this.handleCancel}>Отменить</button>
-            </td>
-            </>
-        ) : (
-            <>
-                <td>{word.english}</td>
-                <td>{word.transcription}</td>
-                <td>{word.russian}</td>
-                <td>{word.tags}</td>
-                <td>
-                <button className="btn edit" onClick={() => this.handleEdit(word)}>Редактировать</button>
-                <button className="btn delete" onClick={() => this.handleDelete(word.id)}>Удалить</button>
-            </td>
-            </>
-        )}
-        </tr>
-    ))}
-            </tbody>
-        </table>
+            <table className="word-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Основное значение</th>
+                        <th>Транскрипция</th>
+                        <th>Перевод</th>
+                        <th>Тема</th>
+                        <th colSpan="2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {words.map((word, index) => (
+                        <tr key={word.id}>
+                            <td>{index + 1}</td>
+                            {editingId === word.id ? (
+                                <>
+                                    <td>
+                                        <input 
+                                            name="english" 
+                                            value={editedWord.english} 
+                                            onChange={handleChange} 
+                                        />
+                                    </td>
+                                    <td>
+                                        <input 
+                                            name="transcription" 
+                                            value={editedWord.transcription} 
+                                            onChange={handleChange} 
+                                        />
+                                    </td>
+                                    <td>
+                                        <input 
+                                            name="russian" 
+                                            value={editedWord.russian} 
+                                            onChange={handleChange} 
+                                        />
+                                    </td>
+                                    <td>
+                                        <input 
+                                            name="tags" 
+                                            value={editedWord.tags} 
+                                            onChange={handleChange} 
+                                        />
+                                    </td>
+                                    <td>
+                                        <button className="btn save" onClick={() => handleSave(word.id)}>
+                                            Сохранить
+                                        </button>
+                                        <button className="btn cancel" onClick={handleCancel}>
+                                            Отменить
+                                        </button>
+                                    </td>
+                                </>
+                            ) : (
+                                <>
+                                    <td>{word.english}</td>
+                                    <td>{word.transcription}</td>
+                                    <td>{word.russian}</td>
+                                    <td>{word.tags}</td>
+                                    <td>
+                                        <button className="btn edit" onClick={() => handleEdit(word)}>
+                                            Редактировать
+                                        </button>
+                                        <button className="btn delete" onClick={() => handleDelete(word.id)}>
+                                            Удалить
+                                        </button>
+                                    </td>
+                                </>
+                            )}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
-    };
-}
+};
+
 export default WordList;
 
 
