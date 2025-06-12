@@ -1,5 +1,13 @@
 @import './variables.css';
 
+.card-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    padding: 0 40px;
+}
+
 .word-card {
     max-width: 350px;
     min-height: 360px; 
@@ -59,5 +67,55 @@
 
 .word-card .btn.translate:active {
     transform: scale(0.95);
+}
+
+.btn.back {
+    padding: 15px 25px;
+    font-size: 15px;
+    margin: 0 20px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+
+.btn.back:hover:not(:disabled) {
+    background-color: #e68a00; 
+    border-color: #e68a00;
+    transform: translateX(-2px);
+}
+
+.btn.back:active:not(:disabled) {
+    background-color: #b26b00;
+    border-color: #b26b00;
+}
+
+.btn.nxt {
+    padding: 15px 25px;
+    font-size: 15px;
+    margin: 0 20px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn.nxt:hover:not(:disabled) {
+    background-color: #388e3c; 
+    border-color: #388e3c;
+    transform: translateX(2px);
+}
+
+.btn.nxt:active:not(:disabled) {
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+}
+
+.btn:disabled {
+    background-color: var(--color-light);
+    border-color: var(--color-border);
+    color: var(--color-border);
+    cursor: not-allowed;
+    transform: none;
 }
 

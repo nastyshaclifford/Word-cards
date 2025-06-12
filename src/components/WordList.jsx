@@ -339,7 +339,7 @@ const WordList = () => {
                                             Сохранить
                                         </button>
                                         <button className="btn cancel" onClick={handleCancel}>
-                                            Отменить
+                                            Вернуть
                                         </button>
                                     </td>
                                 </>
