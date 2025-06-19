@@ -4,17 +4,22 @@ import Footer from './components/Footer';
 import WordList from './components/WordList';
 import './styles/App.css';
 import WordCard from './components/WordCard';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
+    <Router>
     <div className="app">
       <Header />
       <main>
-        <WordList />
-        <WordCard />
+        <Routes>
+        <Route path="/" element={<WordList />} />
+        <Route path='/game' element={<WordCard />} />
+        </Routes>
       </main>
       <Footer />
     </div>
+    </Router>
   );
 }
 
