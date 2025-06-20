@@ -3,8 +3,29 @@
 .footer {
     background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
     color: white;
-    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-logo {
+    height: 40px;
+    width: auto;
+}
+
+.footer-paragraph {
+    margin: 0;
     font-size: 14px;
-    padding: 16px 0;
-    width: 100%;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    
 }

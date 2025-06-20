@@ -1,4 +1,4 @@
-
+@import './variables.css';
 .card-wrapper {
     display: flex;
     align-items: center; 

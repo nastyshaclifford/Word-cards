@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import WordList from './components/WordList';
 import './styles/App.css';
 import WordCard from './components/WordCard';
+import NotFound from './components/NotFound';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Routes>
         <Route path="/" element={<WordList />} />
         <Route path='/game' element={<WordCard />} />
+        <Route path='*' element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

@@ -1,3 +1,5 @@
+@import './variables.css';
+
 .word-table {
     width: 100%;
     border-collapse: collapse;
@@ -24,25 +26,26 @@
     background: rgba(108, 92, 231, 0.05);
 }
 
-.btn.edit {
-    background: var(--color-secondary);
+.btn {
     color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
 }
 
-.btn.delete {
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn.edit, .btn.save {
+    background-color: var(--color-secondary);
+    margin-right: 10px;
+}
+
+.btn.delete, .btn.cancel {
     background: var(--color-primary);
-    color: white;
 }
-
-.btn.save {
-    background: var(--color-secondary);
-    color: white;
-}
-
-.btn.cancel {
-    background: var(--color-primary);
-    color: white;
-}
-
 
 
