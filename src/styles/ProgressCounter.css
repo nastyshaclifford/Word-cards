@@ -1,0 +1,82 @@
+    .progress-counter-container {
+        width: 100%;
+        max-width: 100%;
+        background: white;
+        box-sizing: border-box;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(108, 92, 231, 0.15);
+        padding: 15px 10px;
+        margin: 10px 0 0;
+        transition: all 0.3s ease;
+    }
+    
+
+    .progress-text {
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        gap: 6px;
+        font-size: 1.2rem;
+        margin-bottom: 18px; 
+        font-weight: 600;
+        background: linear-gradient(90deg, #6c5ce7, #fd79a8);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 2px 4px rgba(108, 92, 231, 0.1);
+    }
+
+    .progress-text .current {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #fd79a8;
+    }
+
+    .highlight {
+        color: #fd79a8;
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+    
+    .progress-bar-container {
+        padding-top: 8px; 
+    }   
+
+    .progress-bar {
+        margin-top: 10px;
+        max-width: 100%;
+        height: 10px;
+        background: #f0f0f0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #fd79a8, #6c5ce7);
+        border-radius: 8px;
+        transition: width 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    
+
+    .completion-message {
+        text-align: center;
+        margin-top: 12px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #6c5ce7;
+        animation: fadeInPulse 1.8s infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+
+    @keyframes fadeInPulse {
+        0% { opacity: 0.9; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.03); }
+        100% { opacity: 0.9; transform: scale(1); }
+    }

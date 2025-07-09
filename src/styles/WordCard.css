@@ -11,6 +11,7 @@
 }
 
 .word-card {
+    position: relative;
     background: white;
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(108, 92, 231, 0.15);
@@ -64,6 +65,12 @@
     align-self: center;
 }
 
+.btn.translate:focus {
+    outline: 2px solid #6c5ce7;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.3);
+}
+
 .word-card h2 {
     color: #6c5ce7;
     font-size: 1.8rem;
@@ -83,4 +90,19 @@
     margin-top: 20px;
     animation: fadeIn 0.3s ease;
 } 
+
+.translation-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.inline-progress {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
 
