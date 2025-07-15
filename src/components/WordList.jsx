@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { firstWords } from "./data/wordsData";
 import "../styles/WordList.css";
 
@@ -6,21 +6,48 @@ const WordList = () => {
     const [words, setWords] = useState(firstWords);
     const [editingId, setEditingId] = useState(null);
     const [editedWord, setEditedWord] = useState({});
+    const [errors, setErrors] = useState({});
+    const saveBtnRef = useRef(null);
+
 
     const handleEdit = (word) => {
     setEditingId(word.id);
     setEditedWord({ ...word });
+    setErrors({});
 };
 
-    const handleCancel = () => {
-    setEditingId(null);
-    setEditedWord({});
+const validateFields = () => {
+    const requiredFields = ['english', 'transcription', 'russian', 'tags'];
+    const newErrors = {};
+    requiredFields.forEach(field => {
+        if (!editedWord[field]?.trim()) {
+            newErrors[field] = true;
+        }
+    });
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
 };
 
-    const handleSave = (id) => {
+
+const handleSave = (id) => {
+    const isValid = validateFields();
+    if (!isValid) {
+        console.log('Ошибка: есть пустые поля!');
+        return;
+    }
+
+    console.log('Сохраненные данные:', editedWord);
     setWords(words.map((word) => (word.id === id ? editedWord : word)));
     setEditingId(null);
     setEditedWord({});
+};
+
+
+const handleCancel = () => {
+    setEditingId(null);
+    setEditedWord({});
+    setErrors({});
 };
 
 const handleDelete = (id) => {
@@ -33,8 +60,17 @@ const handleChange = (e) => {
     ...prev,
     [name]: value,
     }));
+
+    if (errors[name] && value.trim()) {
+        setErrors(prev => ({ ...prev, [name]: false }));
+    }
 };
 
+useEffect(() => {
+    if (editingId && saveBtnRef.current) {
+        saveBtnRef.current.focus();
+    }
+}, [editingId]);
 return (
     <div className="container">
         <table className="word-table">
@@ -57,35 +93,41 @@ return (
                 <td>
                     <input
                         name="english"
-                        value={editedWord.english}
+                        value={editedWord.english || ""}
                         onChange={handleChange}
+                        className={errors.english ? "error" : ""}
                     />
                 </td>
                 <td>
                     <input
                         name="transcription"
-                        value={editedWord.transcription}
+                        value={editedWord.transcription || ""}
                         onChange={handleChange}
+                        className={errors.transcription ? "error" : ""}
                     />
                 </td>
                 <td>
                     <input
                         name="russian"
-                        value={editedWord.russian}
+                        value={editedWord.russian || ""}
                         onChange={handleChange}
+                        className={errors.russian ? "error" : ""}
                     />
                 </td>
                 <td>
                     <input
                         name="tags"
-                        value={editedWord.tags}
+                        value={editedWord.tags || ""}
                         onChange={handleChange}
+                        className={errors.tags ? "error" : ""}
                     />
                 </td>
                 <td>
                     <button
+                    ref={saveBtnRef}
                         className="btn save"
-                        onClick={() => handleSave(word.id)}
+                        onClick={() =>handleSave(word.id)}
+                        disabled={Object.values(errors).some(Boolean)}
                     >
                         Сохранить
                     </button>

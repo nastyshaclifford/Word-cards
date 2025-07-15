@@ -26,6 +26,39 @@
     background: rgba(108, 92, 231, 0.05);
 }
 
+.word-table input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.word-table input.error {
+    border: 2px solid #ff4444;
+    animation: shake 0.4s ease;
+}
+
+.word-table input:focus {
+    border-color: var(--color-secondary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.1);
+}
+
+.word-table input.error {
+    border-color: var(--color-error);
+    background-color: var(--error-bg);
+    animation: shake 0.4s ease-in-out;
+}
+
+.error-message {
+    color: var(--color-error);
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+}
+
 .btn {
     color: white;
     transition: all 0.3s ease;
@@ -48,4 +81,15 @@
     background: var(--color-primary);
 }
 
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-3px); }
+    40%, 80% { transform: translateX(3px); }
+}
+
+.btn.save:disabled {
+    background-color: #cccccc !important;
+    cursor: not-allowed;
+}
+  
 
