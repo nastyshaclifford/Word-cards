@@ -1,0 +1,38 @@
+/* ErrorMessage.css */
+@import './variables.css';
+
+.error-message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.error-message-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    background: linear-gradient(90deg, #fff, #e0e0e0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.error-message-text {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

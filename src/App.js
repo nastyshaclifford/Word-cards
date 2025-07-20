@@ -6,12 +6,18 @@ import './styles/App.css';
 import WordCard from './components/WordCard';
 import NotFound from './components/NotFound';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AppContext, AppProvider } from './context/AppContext';
+import ErrorMessage from './components/ErrorMessage';
+import Loader from './components/Loader';
 
 function App() {
   return (
+    <AppProvider>
     <Router>
     <div className="app">
       <Header />
+      <ErrorMessage />
+      <Loader />
       <main>
         <Routes>
         <Route path="/" element={<WordList />} />
@@ -22,6 +28,7 @@ function App() {
       <Footer />
     </div>
     </Router>
+    </AppProvider>
   );
 }
 

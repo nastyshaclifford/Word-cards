@@ -1,25 +1,35 @@
-import { useState, useEffect, useRef } from "react";
-import { firstWords } from "./data/wordsData";
+import { useState, useEffect, useRef, useContext } from "react";
+import { AppContext } from '../context/AppContext';
 import "../styles/WordCard.css";
 import ProgressCounter from './ProgressCounter';
 
 function WordCard() {
+    const { words } = useContext(AppContext);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [showTranslation, setTranslation] = useState(false);
     const [studiedWords, setStudiedWords] = useState([]);
 
     const translateButtonRef = useRef(null);
 
-    const currentWord = firstWords[currentIndex];
-
     useEffect(() => {
+        let timer;
         if (!showTranslation && translateButtonRef.current) {
-            const timer = setTimeout(() => {
+            timer = setTimeout(() => {
                 translateButtonRef.current.focus();
             }, 50);
-            return () => clearTimeout(timer);
         }
+        return () => {
+            if (timer) clearTimeout(timer);
+        };
     }, [currentIndex, showTranslation]);
+
+    
+    if (!words || words.length === 0) {
+        return <p>Загрузка слов...</p>;
+    }
+    
+    const currentWord = words[currentIndex];
+    
 
     const handleShowTranslation = () => {
     setTranslation(true);
@@ -36,7 +46,7 @@ function WordCard() {
 };
 
     const handleChangeNext = () => {
-    if (currentIndex < firstWords.length - 1) {
+    if (currentIndex < words.length - 1) {
         setCurrentIndex(currentIndex + 1);
         setTranslation(false);
     }
@@ -73,7 +83,7 @@ function WordCard() {
 
                     <ProgressCounter 
                         studied={studiedWords.length} 
-                        total={firstWords.length} 
+                        total={words.length} 
                     />
                 </div>
             </div>
@@ -81,7 +91,7 @@ function WordCard() {
             <button
                 className="btn nxt"
                 onClick={handleChangeNext}
-                disabled={currentIndex === firstWords.length - 1}
+                disabled={currentIndex === words.length - 1}
             >
                 Вперед
             </button>
