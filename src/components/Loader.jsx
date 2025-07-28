@@ -1,18 +1,15 @@
-
+import React from 'react';
+import { inject, observer } from 'mobx-react';
 import '../styles/Loader.css';
-import React, { useContext } from 'react';
-import { AppContext } from '../context/AppContext';
 
-const Loader = () => {
-    const { loading } = useContext(AppContext);
+const Loader = inject('wordStore')(observer(({ wordStore }) => {
+    if (!wordStore.loading) return null;
 
-    if (!loading) return null;
-
-return (
-    <div className="loader-container">
-        <div className="loader"></div>
-    </div>
-);
-};
+    return (
+        <div className="loader-container">
+            <div className="loader"></div>
+        </div>
+    );
+}));
 
 export default Loader;

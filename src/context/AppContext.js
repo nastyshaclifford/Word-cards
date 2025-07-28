@@ -40,9 +40,10 @@ export const AppProvider = ({ children }) => {
             };
 
             const deleteWord = async (id) => {
+                console.log(id);
                 try {
-                    const response = await fetch(`${API_URL}/${id}`, {
-                        method: 'DELETE'
+                    const response = await fetch(`${API_URL}/${id}/delete`, {
+                        method: 'POST'
                     });
                     if (!response.ok) throw new Error('Ошибка удаления');
                     setWords(words.filter(word => word.id !== id));
@@ -52,9 +53,10 @@ export const AppProvider = ({ children }) => {
             };
 
             const updateWord = async (updatedWord) => {
+                console.log(updatedWord);
                 try {
-                    const response = await fetch(`${API_URL}/${updatedWord.id}`, {
-                    method: 'PUT',
+                    const response = await fetch(`${API_URL}/${updatedWord.id}/update`, {
+                    method: 'POST',
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(updatedWord)  
                 });
