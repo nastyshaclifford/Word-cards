@@ -17,4 +17,7 @@ Router
 Mob X (Context тоже попробован в другой ветке)
 Работа с API
 
-
+Скриншоты приложения:
+<img width="1440" height="716" alt="Раздел изучения карточек с иностранными словами" src="https://github.com/user-attachments/assets/bfb97435-c3df-4f1d-b5d5-c368dc90b7d7" />
+<img width="1440" height="728" alt="Главная страница" src="https://github.com/user-attachments/assets/17f1f3fb-2c58-4f3e-ab6c-8cd134650739" />
+<img width="1440" height="716" alt="Страница с ошибкой 404" src="https://github.com/user-attachments/assets/eac130a4-b781-4c4a-bf73-7f2a422c981a" />
